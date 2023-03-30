@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect, useRef, useCallback } from "react";
 import { Input, Button, Tooltip, Modal, message } from "antd";
 import Phone from "../../assests/phone.gif";
 import Teams from "../../assests/teams.mp3";
@@ -43,8 +43,15 @@ const Options = () => {
     otherUser,
     setOtherUser,
     leaveCall1,
+    room,
+        setRoom,
+        joinRoom,
+        // message,
+        // messageReceived,
+        setMessage,
+        // setMessageReceived,
   } = useContext(VideoContext);
-
+  
   useEffect(() => {
     if (isModalVisible) {
       Audio?.current?.play();
@@ -67,6 +74,33 @@ const Options = () => {
     } else setIsModalVisible(false);
   }, [call.isReceivingCall]);
 
+  // const calljoin = ()=>{
+  //   // if (name.length) callUser(idToCall);
+  //   // else message.error("Please enter your name to call!");
+  //   joinRoom();
+  //   console.log(room ,'joiiiined');
+  // }
+  // var x=me;
+  //  const copyC=(event)=>{
+  //   message.success("Code copied successfully!");
+   
+  //   setRoom((x));
+  //   // joinRoom();
+  //   console.log('this is 2' ,room);
+
+  //  }
+  //  const copyC1=(event)=>{
+   
+  //   setRoom((x));
+  //   joinRoom();
+  //   console.log('this is 1' ,room);
+
+  //  }
+  // const callset=(event)=>{
+  //   setIdToCall(event.target.value) 
+  //   setRoom(event.target.value);
+  //   console.log('this is 3' ,room);
+  //   }
   return (
     <div className={classes.options}>
       <div style={{ marginBottom: "0.5rem" }}>
@@ -92,7 +126,9 @@ const Options = () => {
               icon={<CopyOutlined />}
               className={classes.btn}
               tabIndex="0"
-              onClick={() => message.success("Code copied successfully!")}
+              onClick={(event)=>{
+                message.success("Code copied successfully!");}}
+            
             >
               Copy code
             </Button>
@@ -132,7 +168,12 @@ const Options = () => {
           size="large"
           className={classes.inputgroup}
           value={idToCall}
-          onChange={(e) => setIdToCall(e.target.value)}
+          onChange={(e) => {setIdToCall(e.target.value) } }
+          // // onChange={(event) => {
+          // //   setRoom(event.target.value);
+          // // }}
+          // onChange={(event)=>{callset(event)}}
+          // onKeyUp={(event)=>{callset(event)}}
           style={{ marginRight: "0.5rem", marginBottom: "0.5rem" }}
           prefix={<UserOutlined className="site-form-item-icon" />}
           suffix={
@@ -157,15 +198,20 @@ const Options = () => {
             type="primary"
             icon={<PhoneOutlined />}
             onClick={() => {
-              if (name.length) callUser(idToCall);
+              if (name.length) {callUser(idToCall) ;}
               else message.error("Please enter your name to call!");
             }}
+
+            // onClick={calljoin}
+            // onClickCapture={calljoin}
+            // onKeyUp={calljoin}
+            // onKeyUpCapture={calljoin}
             className={classes.btn}
             tabIndex="0"
           >
             Call
           </Button>
-        )}
+         )} 
       </div>
 
       {call.isReceivingCall && !callAccepted && (

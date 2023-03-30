@@ -4,10 +4,11 @@ import { io } from "socket.io-client";
 import Peer from "simple-peer";
 import { message } from "antd";
 
-const URL = "https://fathomless-tundra-67025.herokuapp.com/";
+// const URL = "http://localhost:5000/";
 // const SERVER_URL = "http://localhost:5000/";
 
-export const socket = io(URL);
+// export const socket = io(URL);
+export const socket = io("http://localhost:3001");
 
 const VideoState = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
@@ -25,7 +26,14 @@ const VideoState = ({ children }) => {
   const [userMicStatus, setUserMicStatus] = useState();
   const [msgRcv, setMsgRcv] = useState("");
   const [screenShare, setScreenShare] = useState(false)
-
+  const [room, setRoom] = useState("");
+  const [message, setMessage] = useState("");
+  const joinRoom = () => {
+    if (room !== "") {
+      socket.emit("join_room", room);
+      console.log(room ,'is joining');
+    }
+  };
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
@@ -45,6 +53,7 @@ const VideoState = ({ children }) => {
     socket.on("endCall", () => {
       window.location.reload();
     });
+// -----------------------------------------------------------------------------
 
     socket.on("updateUserMedia", ({ type, currentMediaStatus }) => {
       if (currentMediaStatus !== null || currentMediaStatus !== []) {
@@ -68,7 +77,7 @@ const VideoState = ({ children }) => {
     });
 
     socket.on("msgRcv", ({ name, msg: value, sender }) => {
-      setMsgRcv({ value, sender });
+      setMsgRcv({ value,sender });
       setTimeout(() => {
         setMsgRcv({});
       }, 2000);
@@ -244,10 +253,12 @@ const VideoState = ({ children }) => {
     msg.sender = name;
     setChat([...chat, msg]);
   };
+ 
 
   return (
     <VideoContext.Provider
       value={{
+        otherUser,
         call,
         callAccepted,
         myVideo,
@@ -278,7 +289,15 @@ const VideoState = ({ children }) => {
         updateMic,
         screenShare,
         handleScreenSharing,
-        fullScreen
+        fullScreen,
+        room,
+        setRoom,
+        joinRoom,
+        message,
+        // messageReceived,
+        setMessage,
+        // setMessageReceived,
+        // sendMessage
       }}
     >
       {children}

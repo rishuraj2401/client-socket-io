@@ -13,6 +13,7 @@ import ScreenShare from '../../assests/share_screen.svg'
 import { UserOutlined, MessageOutlined } from "@ant-design/icons";
 
 import { socket } from "../../context/VideoState";
+import Editor from "./Editor";
 
 // const socket = io()
 const { Search } = Input;
@@ -81,9 +82,37 @@ const Video = () => {
       });
     }
   }, [msgRcv]);
+ 
 
   return (
     <div className="grid">
+      {<Editor/>}
+      <div>
+             {/* <input
+        placeholder="Message..."
+        onChange={(event)=>send(event)} onKeyUp={(event)=>send(event)}
+      /> */}
+      {/* <button onClick={sendMessage}> Send Message</button> */}
+      {/* <h1> Message:</h1>
+      {msgRcv} */}
+
+      {/* {chat.map((msg) => (
+                    <div
+                      className={msg.type === "sent" ? "msg_sent" : "msg_rcv"}
+                    >
+                      {msg.msg}
+        </div>))}
+        <Search
+                placeholder="your message"
+                allowClear
+                className="input_msg"
+                enterButton="Send 🚀"
+                onChange={(e) => send(e)}
+                value={sendMsg}
+                size="large"
+                onSearch={onSearch}
+              /> */}
+        </div>
       {stream ? (
         <div
           style={{ textAlign: "center" }}
