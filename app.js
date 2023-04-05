@@ -6,7 +6,7 @@ const path= require("path");
 app.use(express.json());
 const io = require("socket.io")(server, {
   cors: {
-    origin: "*",
+    origin: "https://interviewapp.vercel.app/",
     methods: ["GET", "POST"],
   },
 });
