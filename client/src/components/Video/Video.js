@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import VideoContext from "../../context/VideoContext";
 import "./Video.css";
-import { Card, Modal, Button, Input, notification, Avatar } from "antd";
+import { Card, Modal, Button, Input, notification, Avatar, message } from "antd";
 import Man from "../../assests/man.svg";
 import VideoIcon from "../../assests/video.svg";
 import { io } from "socket.io-client";
@@ -11,9 +11,9 @@ import Msg_Illus from "../../assests/msg_illus.svg";
 import Msg from "../../assests/msg.svg";
 import ScreenShare from '../../assests/share_screen.svg'
 import { UserOutlined, MessageOutlined } from "@ant-design/icons";
-
 import { socket } from "../../context/VideoState";
 import Editor from "./Editor";
+// import Editor1 from "./editor1";
 
 // const socket = io()
 const { Search } = Input;
@@ -45,10 +45,24 @@ const Video = () => {
     myMicStatus,
     userMicStatus,
     updateMic,
+    setMessage,
+    message,
+    otherUser
   } = useContext(VideoContext);
 
   const [sendMsg, setSendMsg] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
+  // const [messageReceived, setMessageReceived] = useState("");
+
+  // const sendMessage = () => {
+  //   socket.emit("send_message", { message ,to:otherUser});
+  // };
+
+  // useEffect(() => {
+  //   socket.on("receive_message", (data) => {
+  //     setMessageReceived(data.message);
+  //   });
+  // }, [socket]);
   socket.on("msgRcv", ({ name, msg: value, sender }) => {
     let msg = {};
     msg.msg = value;
@@ -82,11 +96,24 @@ const Video = () => {
       });
     }
   }, [msgRcv]);
- 
-
+//   const send=(e)=>{
+//     setMessage(e);
+//     sendMessage()
+//     // setFinal(message+messageReceived)
+//   }
+//  const [final, setFinal]=useState(message+messageReceived)
   return (
     <div className="grid">
-      {<Editor/>}
+      {<Editor />}
+    
+      {/* <Editor
+          language="xml"
+          displayName="HTML"
+          value={messageReceived}
+          onChange={(e)=>{send(e)}}
+          onKeyUp={(e)=>{send(e)}}
+        /> */}
+     {/* {messageReceived} */}
       <div>
              {/* <input
         placeholder="Message..."

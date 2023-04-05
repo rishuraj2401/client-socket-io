@@ -1,7 +1,9 @@
-const app = require("express")();
+const express = require("express");
+const app=express();
 const server = require("http").createServer(app);
 const cors = require("cors");
-
+const path= require("path");
+app.use(express.json());
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
@@ -73,9 +75,22 @@ io.on("connection", (socket) => {
 //   });
 // });
 
+
+if ("production" == "production") {
+   
+ 
+  app.use(express.static(path.resolve(__dirname, "./client/build")));
+  app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "./client/build", "index.html"))
+  })
+}
+app.use(express.urlencoded({ extended: false }));
 server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
-
-
+// "scripts": {
+//   "test": "echo \"Error: no test specified\" && exit 1",
+//   "client": "cd client && npm start",
+//   "dev": "concurrently \"nodemon index.js\" \"npm run client\""
+// },
 
 
 
