@@ -8,7 +8,7 @@ import { message } from "antd";
 // const SERVER_URL = "http://localhost:5000/";
 
 // export const socket = io(URL);
-export const socket = io("https://interviewapp.vercel.app/");
+export const socket = io("https://fathomless-tundra-67025.herokuapp.com/");
 
 const VideoState = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
