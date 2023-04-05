@@ -8,7 +8,7 @@ import { message } from "antd";
 // const SERVER_URL = "http://localhost:5000/";
 
 // export const socket = io(URL);
-export const socket = io("http://localhost:3001");
+export const socket = io("https://interviewapp.vercel.app/");
 
 const VideoState = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
