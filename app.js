@@ -6,12 +6,16 @@ const path= require("path");
 app.use(express.json());
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://interviewapp.vercel.app/",
+    origin: "*",
     methods: ["GET", "POST"],
+
   },
 });
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://interviewapp.vercel.app',
+  optionsSuccessStatus: 200
+}));
 
 const PORT = process.env.PORT || 3001;
 
