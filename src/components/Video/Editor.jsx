@@ -1,4 +1,3 @@
-// import React from 'react';
 import React, { useContext, useEffect, useState, useRef, useCallback, memo } from "react";
 import VideoContext from "../../context/VideoContext";
 import "./Video.css";
@@ -8,6 +7,7 @@ import CodeMirror from '@uiw/react-codemirror';
 // import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/theme/dracula.css';
+import Codemirror from 'codemirror';
 
 
 const Editor = () => {
