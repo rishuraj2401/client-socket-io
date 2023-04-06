@@ -9,13 +9,6 @@
         {
             "src":"/.*",
             "dest":"app.js"
-        },
-        {
-            "src": "/socket.io/(.*)",
-            "dest": "https://interviewapp.vercel.app/",
-            "headers": {
-              "host": "interviewapp.vercel.app"
-            }
-          }
+        }
     ]
 }
