@@ -4,23 +4,11 @@ import VideoContext from "../../context/VideoContext";
 import "./Video.css";
 import { io } from "socket.io-client";
 import { socket } from "../../context/VideoState";
-import Codemirror from 'codemirror';
 import CodeMirror from '@uiw/react-codemirror';
 // import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/javascript/javascript';
-// import 'codemirror/addon/edit/closetag';
-// import 'codemirror/addon/edit/closebrackets';
-// import 'codemirror/lib/codemirror.css'
-
-// import 'codemirror/mode/javascript/javascript'
-// import 'codemirror/mode/css/css'
-// import { Controlled as ControlledEditor } from 'react-codemirror2'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCompressAlt, faExpandAlt } from '@fortawesome/free-solid-svg-icons'
-// import 'codemirror/theme/material.css'
-// import 'codemirror/mode/xml/xml'
 import 'codemirror/theme/dracula.css';
-//import { fromTextArea } from "codemirror";
+
 
 const Editor = () => {
   const {
