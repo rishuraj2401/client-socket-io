@@ -4,11 +4,13 @@ import { io } from "socket.io-client";
 import Peer from "simple-peer";
 import { message } from "antd";
 
-// const URL = "http://localhost:5000/";
+const URL = "http://localhost:3001/";
 // const SERVER_URL = "http://localhost:5000/";
 
 // export const socket = io(URL);
-export const socket = io("https://interviewapp-8e28tnswk-rishuraj2401.vercel.app/");
+export const socket = io("https://satin-near-hornet.glitch.me/" ,{
+  reconnectionDelayMax: 10000,
+});
 
 const VideoState = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
