@@ -2,10 +2,10 @@ import React, { useState, useContext, useEffect, useRef, useCallback } from "rea
 import { Input, Button, Tooltip, Modal, message } from "antd";
 import Phone from "../../assests/phone.gif";
 import Teams from "../../assests/teams.mp3";
-import * as classes from "./Options.module.css";
+import classes from"./Options.module.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import VideoContext from "../../context/VideoContext";
-import Hang from "../../assests/hang.svg";
+import man from "../../assests/man.svg";
 import {
   TwitterIcon,
   TwitterShareButton,
@@ -190,7 +190,7 @@ const Options = () => {
             className={classes.hang}
             tabIndex="0"
           >
-            <img src={Hang} alt="hang up" style={{ height: "15px" }} />
+            <img src={man} alt="hang up" style={{ height: "15px" }} />
             &nbsp; Hang up
           </Button>
         ) : (

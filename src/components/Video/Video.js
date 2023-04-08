@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import VideoContext from "../../context/VideoContext";
 import "./Video.css";
 import { Card, Modal, Button, Input, notification, Avatar, message } from "antd";
-import Man from "../../assests/man.svg";
-import VideoIcon from "../../assests/video.svg";
+import {Man} from "../../assests/man.svg";
+import videoicon from "../../assests/videoicon.svg";
 import { io } from "socket.io-client";
-import VideoOff from "../../assests/video-off.svg";
+import videooff from "../../assests/videooff.svg";
 // import Profile from "../../assests/profile.svg";
 import Msg_Illus from "../../assests/msg_illus.svg";
 import Msg from "../../assests/msg.svg";
@@ -249,9 +249,9 @@ const Video = () => {
 
             <div className="icons" onClick={() => updateVideo()} tabIndex="0">
               {myVdoStatus ? (
-                <img src={VideoIcon} alt="video on icon" />
+                <img src={videoicon} alt="video on icon" />
               ) : (
-                <img src={VideoOff} alt="video off icon" />
+                <img src={videooff} alt="video off icon" />
               )}
             </div>
           </div>
